@@ -1,11 +1,7 @@
-#include <iostream>
-#include "Table.h"
+#include "gmock/gmock.h"
 
-int main() {
-    std::ifstream in;
-    in.open("sample.csv"); 
-    Table t(in);
-
-    std::for_each(t,Table(), [](const std::string& record){ std::cout << record << std::endl; });
-    return 0;
+int main(int argc, char** argv) {
+   testing::InitGoogleMock(&argc, argv);
+   return RUN_ALL_TESTS();
 }
+
