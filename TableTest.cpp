@@ -32,3 +32,27 @@ TEST(TableIterator,ReadLastRow) {
     ASSERT_THAT(line,Eq("12,DF,ER,AD,JK"));
 
 }
+
+TEST(TableIterator, PreIncrement) {
+    std::ifstream in;
+    in.open("../csv/sample.csv"); 
+    
+    Table t(in);
+    ++t;
+
+    ASSERT_THAT(*t,Eq("1,2,3,4,5"));
+
+
+}
+
+TEST(TableIterator, PostIncrement) {
+    std::ifstream in;
+    in.open("../csv/sample.csv"); 
+    
+    Table t(in);
+    t++;
+
+    ASSERT_THAT(*t,Eq("1,2,3,4,5"));
+
+
+}

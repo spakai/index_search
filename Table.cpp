@@ -16,6 +16,13 @@ Table& Table::operator++() {
     return *this;
 }
 
+Table Table::operator++(int) {
+    Table tmp(*this);
+    ++(*this);
+    return(tmp);
+}
+
+
 std::string& Table::operator*() {
     return currentLine;
 }

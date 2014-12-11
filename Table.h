@@ -15,6 +15,7 @@ public:
     Table();
     Table(std::ifstream& in);
     Table& operator++(); 
+    Table operator++(int); 
     std::string& operator*();
     std::string& operator->(); 
     bool operator==(const Table& other);
