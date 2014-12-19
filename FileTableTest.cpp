@@ -9,5 +9,12 @@ TEST(FileTable,OffsetsAndLengths) {
 
 	FileTable ft("../csv/sample.csv");
  
-    ASSERT_THAT(ft.getNumberOfRows(),Eq(5));
+    ASSERT_THAT(ft.getNumberOfRows(),Eq(3));
+}
+
+TEST(FileTable, GetRow) {
+	FileTable ft("../csv/sample.csv");
+ 
+    ASSERT_THAT(ft.getRow(1),Eq("A,B,C,D,E"));
+
 }
