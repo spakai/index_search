@@ -9,10 +9,10 @@ set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 
 set(sources 
    main.cpp
-   Table.cpp)
+   FileTable.cpp)
 
 set(test_sources
-   TableTest.cpp)
+   FileTableTest.cpp)
 
 add_executable(test ${test_sources} ${sources})
 

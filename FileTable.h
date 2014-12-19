@@ -4,11 +4,14 @@
 
 class FileTable {
     public:
-        FileTable(std::string& filename);
-        init(std::string& filename);
+		FileTable() {};
+		~FileTable() {};
+        FileTable(const std::string& filename);
+        void init(const std::string& filename);
+		int getNumberOfRows();
 
     private:
-        ifstream csv_file;
+        std::ifstream csv_file;
         std::vector<int> offsets;
         std::vector<int> lengths;
 };
