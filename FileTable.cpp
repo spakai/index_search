@@ -16,6 +16,7 @@ void FileTable::init(const std::string& filename) {
 		if(!csv_file.fail()){
 			offsets.push_back(offset);
 			offset = line.length()+ 1;
+			lengths.push_back(line.size());
 		}
     }
 }
@@ -24,7 +25,15 @@ int FileTable::getNumberOfRows() {
 	return offsets.size();
 }
 
-std::string getRow(int index) {
-		
-
+std::string FileTable::getRow(int index) {
+	//csv_file.seekg(offsets[index], std::ios_base::beg);
+	std::ifstream is ("../csv/sample.csv");
+	is.seekg(offsets[index], is.beg);
+	
+	char * buffer = new char[lengths[index]];
+	is.read(buffer, lengths[index);
+	std::string t(buffer);	
+	delete[] buffer;
+	return t;
 }
+
