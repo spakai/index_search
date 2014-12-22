@@ -26,12 +26,10 @@ int FileTable::getNumberOfRows() {
 }
 
 std::string FileTable::getRow(int index) {
-	//csv_file.seekg(offsets[index], std::ios_base::beg);
-	std::ifstream is ("../csv/sample.csv");
-	is.seekg(offsets[index], is.beg);
-	
+    csv_file.clear();
+	csv_file.seekg(offsets[index], std::ios_base::beg);
 	char * buffer = new char[lengths[index]];
-	is.read(buffer, lengths[index);
+	csv_file.read(buffer, lengths[index]);
 	std::string t(buffer);	
 	delete[] buffer;
 	return t;
