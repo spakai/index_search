@@ -18,3 +18,11 @@ TEST(FileTable, GetSpecificRow) {
 
 	ASSERT_THAT(ft.getRow(0), StrEq("A,B,C,D,E"));
 }
+
+TEST(FileTable, GetInvalidRow) {
+
+	FileTable ft("../csv/sample.csv");
+
+    ASSERT_THROW(ft.getRow(100), std::out_of_range);
+    
+}
