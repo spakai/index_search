@@ -27,7 +27,7 @@ int FileTable::getNumberOfRows() {
 
 std::string FileTable::getRow(int index) {
 
-    if(index > getNumberOfRows()) { 
+    if(index < 0 || index > getNumberOfRows()) { 
         throw std::out_of_range("index out of range");
     }
 

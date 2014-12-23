@@ -19,10 +19,18 @@ TEST(FileTable, GetSpecificRow) {
 	ASSERT_THAT(ft.getRow(0), StrEq("A,B,C,D,E"));
 }
 
-TEST(FileTable, GetInvalidRow) {
+TEST(FileTable, GetInvalidRowThatIsLargerThanMaxRows) {
 
 	FileTable ft("../csv/sample.csv");
 
     ASSERT_THROW(ft.getRow(100), std::out_of_range);
+    
+}
+
+TEST(FileTable, GetInvalidRowThatIsNegative) {
+
+	FileTable ft("../csv/sample.csv");
+
+    ASSERT_THROW(ft.getRow(-100), std::out_of_range);
     
 }
