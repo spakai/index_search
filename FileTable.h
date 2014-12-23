@@ -16,4 +16,18 @@ class FileTable {
         std::ifstream csv_file;
         std::vector<int> offsets;
         std::vector<int> lengths;
+
+    class Iterator {
+        public:
+            Iterator();
+            Iterator& operator++();
+            Iterator operator++(int);
+            std::string& operator*();
+            std::string& operator->();
+            bool operator==(const Iterator& other);
+            bool operator!=(const Iterator& other);
+
+        private:
+            int index;
+    };
 };
