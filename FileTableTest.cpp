@@ -12,7 +12,7 @@ TEST(FileTable,OffsetsAndLengths) {
     ASSERT_THAT(ft.getNumberOfRows(),Eq(5));
 }
 
-TEST(FileTable, GetRow0) {
+TEST(FileTable, DISABLED_GetRow0) {
 	
 	FileTable ft("../csv/sample.csv");
 
