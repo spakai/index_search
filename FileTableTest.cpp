@@ -20,37 +20,27 @@ TEST(FileTable, GetRow0) {
 
 }
 
-TEST(FileTable, GetRow1) {
-	
-	FileTable ft("../csv/sample.csv");
-
-	ASSERT_THAT(ft.getRow(1), StrEq("1,2,3,4,5"));
-
-}
-
 TEST(FileTable, GetRow3) {
 	
 	FileTable ft("../csv/sample.csv");
 
-	ASSERT_THAT(ft.getRow(3), StrEq("G,H,J,K,P"));
+	ASSERT_THAT(ft.getRow(3), StrEq("Z,YX,AB,DE,GH"));
 
 }
 
-TEST(FileTable, GetRow5) {
+TEST(FileTable, GetRow4) {
 	
 	FileTable ft("../csv/sample.csv");
 
-	ASSERT_THAT(ft.getRow(5), StrEq("12,DF,ER,AD,JK"));
+	ASSERT_THAT(ft.getRow(4), StrEq("12,DF,ER,AD,JK"));
 
 }
-
-
 
 TEST(FileTable, GetInvalidRowThatIsLargerThanMaxRows) {
 
 	FileTable ft("../csv/sample.csv");
 
-    ASSERT_THROW(ft.getRow(100), std::out_of_range);
+    ASSERT_THROW(ft.getRow(5), std::out_of_range);
     
 }
 
@@ -78,7 +68,7 @@ TEST(FileTable, Iterator) {
 
 }
 
-TEST(TableIterator,DISABLED_ReadLastRow) {
+TEST(TableIterator,ReadLastRow) {
 
     std::string line; 
 
