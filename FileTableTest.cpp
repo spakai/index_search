@@ -34,3 +34,19 @@ TEST(FileTable, GetInvalidRowThatIsNegative) {
     ASSERT_THROW(ft.getRow(-100), std::out_of_range);
     
 }
+
+TEST(FileTable, Iterator) {
+
+    FileTable ft("../csv/sample.csv");
+
+    FileTable::Iterator end ; 
+
+    FileTable::Iterator begin(ft);
+
+    int numberOfRows=0;
+
+    std::for_each(begin,end, [&numberOfRows](const std::string& record){ ++numberOfRows; });
+     
+    ASSERT_THAT(numberOfRows,Eq(5));
+
+}

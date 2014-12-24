@@ -40,5 +40,3 @@ std::string FileTable::getRow(int index) {
     delete[] buffer;
     return t;
 }
-
-
