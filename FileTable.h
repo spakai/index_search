@@ -35,6 +35,7 @@ class FileTable {
                 return (eof != other.eof);
             }
 
+
         private:
             FileTable *table;
             int index;

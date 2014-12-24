@@ -12,12 +12,39 @@ TEST(FileTable,OffsetsAndLengths) {
     ASSERT_THAT(ft.getNumberOfRows(),Eq(5));
 }
 
-TEST(FileTable, GetSpecificRow) {
+TEST(FileTable, GetRow0) {
 	
 	FileTable ft("../csv/sample.csv");
 
 	ASSERT_THAT(ft.getRow(0), StrEq("A,B,C,D,E"));
+
 }
+
+TEST(FileTable, GetRow1) {
+	
+	FileTable ft("../csv/sample.csv");
+
+	ASSERT_THAT(ft.getRow(1), StrEq("1,2,3,4,5"));
+
+}
+
+TEST(FileTable, GetRow3) {
+	
+	FileTable ft("../csv/sample.csv");
+
+	ASSERT_THAT(ft.getRow(3), StrEq("G,H,J,K,P"));
+
+}
+
+TEST(FileTable, GetRow5) {
+	
+	FileTable ft("../csv/sample.csv");
+
+	ASSERT_THAT(ft.getRow(5), StrEq("12,DF,ER,AD,JK"));
+
+}
+
+
 
 TEST(FileTable, GetInvalidRowThatIsLargerThanMaxRows) {
 
@@ -48,5 +75,21 @@ TEST(FileTable, Iterator) {
     std::for_each(begin,end, [&numberOfRows](const std::string& record){ ++numberOfRows; });
      
     ASSERT_THAT(numberOfRows,Eq(5));
+
+}
+
+TEST(TableIterator,DISABLED_ReadLastRow) {
+
+    std::string line; 
+
+    FileTable ft("../csv/sample.csv");
+
+    FileTable::Iterator end ; 
+
+    FileTable::Iterator begin(ft);
+
+    std::for_each(begin,end, [&line](const std::string& record){ line = record; });
+
+    ASSERT_THAT(line,Eq("12,DF,ER,AD,JK"));
 
 }
