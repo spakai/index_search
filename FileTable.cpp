@@ -30,7 +30,7 @@ int FileTable::getNumberOfRows() {
 	return offsets.size();
 }
 
-std::string FileTable::getRow(int index) {
+std::string& FileTable::getRow(int index) {
 
     if(index < 0 || index > getNumberOfRows() - 1) { 
         throw std::out_of_range("index out of range");
@@ -39,7 +39,7 @@ std::string FileTable::getRow(int index) {
     csv_file.seekg(offsets[index], std::ios_base::beg);
     char * buffer = new char[lengths[index]];
     csv_file.read(buffer, lengths[index]);
-    std::string t(buffer,lengths[index]);	
+	currentLine.assign(buffer,lengths[index]);
     delete[] buffer;
-    return t;
+    return currentLine;
 }

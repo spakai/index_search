@@ -10,7 +10,7 @@ class FileTable {
         FileTable(const std::string& filename);
         void init(const std::string& filename);
 		int getNumberOfRows();
-		std::string getRow(int index);
+		std::string& getRow(int index);
 
     class Iterator {
         public:
@@ -46,4 +46,5 @@ class FileTable {
         std::ifstream csv_file;
         std::vector<int> offsets;
         std::vector<int> lengths;
+		std::string currentLine;
 };
