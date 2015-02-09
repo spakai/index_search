@@ -3,5 +3,5 @@ class TreeIndex: public Index {
  		virtual void buildIndex(Table & table, int column)=0;
 
 	private:
-		std::map<std::string, std::vector<int>> items;
+		std::map<std::string,int > index;
 };
