@@ -1,4 +1,4 @@
-class TreeIndex: public Index {
+class PrimaryTreeIndex: public Index {
 	public:
  		virtual void buildIndex(Table & table, int column)=0;
 
