@@ -1,5 +1,4 @@
 #include "Index.h"
-#include "Table.h"
 #include <map>
 
 class Table;
