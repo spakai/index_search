@@ -9,7 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall")
 
 set(sources 
    main.cpp
-   FileTable.cpp)
+   FileTable.cpp
+   PrimaryTreeIndex.cpp)
 
 set(test_sources
    FileTableTest.cpp)

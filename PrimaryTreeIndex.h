@@ -1,3 +1,9 @@
+#include "Index.h"
+#include "Table.h"
+#include <map>
+
+class Table;
+
 class PrimaryTreeIndex: public Index {
 	public:
  		virtual void buildIndex(Table & table, int column)=0;
