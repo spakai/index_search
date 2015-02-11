@@ -5,8 +5,8 @@
 
 class Table {
     public:
-		virtual int getNumberOfRows()=0;
-		virtual std::string& getRow(int index)=0;
+        virtual int getNumberOfRows()=0;
+        virtual std::string& getRow(int index)=0;
 
     class Iterator {
         public:
