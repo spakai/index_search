@@ -38,6 +38,14 @@ class Table {
             bool eof;
     };
 
+		Iterator begin() {
+			return Iterator(*this);
+		}
+
+		Iterator end() {
+			return Iterator();
+		}
+
     protected:
         std::ifstream csv_file;
         std::vector<int> offsets;

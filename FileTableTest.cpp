@@ -56,13 +56,9 @@ TEST(TablIterator, Iterator) {
 
     FileTable ft("../csv/bnumber.csv");
 
-    FileTable::Iterator end ; 
-
-    FileTable::Iterator begin(ft);
-
     int numberOfRows=0;
 
-    std::for_each(begin,end, [&numberOfRows](const std::string& record){ ++numberOfRows; });
+    std::for_each(ft.begin(),ft.end(), [&numberOfRows](const std::string& record){ ++numberOfRows; });
      
     ASSERT_THAT(numberOfRows,Eq(5));
 
@@ -74,11 +70,7 @@ TEST(TableIterator,ReadLastRow) {
 
     FileTable ft("../csv/bnumber.csv");
 
-    FileTable::Iterator end ; 
-
-    FileTable::Iterator begin(ft);
-
-    std::for_each(begin,end, [&line](const std::string& record){ line = record; });
+    std::for_each(ft.begin(),ft.end(), [&line](const std::string& record){ line = record; });
 
     ASSERT_THAT(line,Eq("0060552,Silibin"));
 
