@@ -12,7 +12,7 @@ class Table {
 
     class Iterator {
         public:
-            Iterator(Table &table) : table(&table), index(0), eof(false) {}
+            Iterator(Table *table) : table(table), index(0), eof(false) {}
             Iterator() : eof(true) {}
             Iterator& operator++() {
                 ++index;   
@@ -46,7 +46,7 @@ class Table {
     };
 
         Iterator begin() {
-            return Iterator(*this);
+            return Iterator(this);
         }
 
         Iterator end() {
