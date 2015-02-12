@@ -1,3 +1,5 @@
+#pragma once
+
 #include <vector>
 #include <string>
 #include <fstream>
@@ -19,7 +21,12 @@ class Table {
                 }
                 return (*this);
             }
-            Iterator operator++(int);
+            Iterator operator++(int) {
+                Iterator tmp(*this);
+                ++(*this);
+                return (tmp);
+            }
+            
             std::string operator*() {
                 return table->getRow(index);
             }

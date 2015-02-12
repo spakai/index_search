@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Table.h"
 
 class FileTable : public Table{
