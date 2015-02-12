@@ -1,9 +1,5 @@
 #include "FileTable.h"
 
-FileTable::FileTable(const std::string& filename) {
-    init(filename);
-}
-
 void FileTable::init(const std::string& filename) {
     csv_file.exceptions(std::ifstream::failbit | std::ifstream::badbit);	
     csv_file.open(filename);

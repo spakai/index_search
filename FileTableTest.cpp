@@ -5,56 +5,42 @@
 
 using namespace testing;
 
-TEST(FileTable,OffsetsAndLengths) {
+class FileTableTest : public Test {
+    public:
+	    FileTable ft;
 
-	FileTable ft("../csv/bnumber.csv");
- 
+	    void SetUp() override {
+		    ft.init("../csv/bnumber.csv");
+	    }
+};
+
+TEST_F(FileTableTest,OffsetsAndLengths) {
     ASSERT_THAT(ft.getNumberOfRows(),Eq(5));
 }
 
-TEST(FileTable, GetRow0) {
-	
-	FileTable ft("../csv/bnumber.csv");
-
+TEST_F(FileTableTest, GetRow0) {
 	ASSERT_THAT(ft.getRow(0), StrEq("0060,Malaysia"));
 
 }
 
-TEST(FileTable, GetRow3) {
-	
-	FileTable ft("../csv/bnumber.csv");
-
+TEST_F(FileTableTest, GetRow3) {
 	ASSERT_THAT(ft.getRow(3), StrEq("006055269705,Silibin"));
-
 }
 
-TEST(FileTable, GetRow4) {
-	
-	FileTable ft("../csv/bnumber.csv");
-
+TEST_F(FileTableTest, GetRow4) {
 	ASSERT_THAT(ft.getRow(4), StrEq("0060552,Silibin"));
-
 }
 
-TEST(FileTable, GetInvalidRowThatIsLargerThanMaxRows) {
-
-	FileTable ft("../csv/bnumber.csv");
-
+TEST_F(FileTableTest, GetInvalidRowThatIsLargerThanMaxRows) {
     ASSERT_THROW(ft.getRow(5), std::out_of_range);
     
 }
 
-TEST(FileTable, GetInvalidRowThatIsNegative) {
-
-	FileTable ft("../csv/bnumber.csv");
-
-    ASSERT_THROW(ft.getRow(-100), std::out_of_range);
-    
+TEST_F(FileTableTest, GetInvalidRowThatIsNegative) {
+	ASSERT_THROW(ft.getRow(-100), std::out_of_range);
 }
 
-TEST(TablIterator, Iterator) {
-
-    FileTable ft("../csv/bnumber.csv");
+TEST_F(FileTableTest, Iterator) {
 
     int numberOfRows=0;
 
@@ -64,14 +50,11 @@ TEST(TablIterator, Iterator) {
 
 }
 
-TEST(TableIterator,ReadLastRow) {
+TEST_F(FileTableTest,ReadLastRow) {
 
     std::string line; 
-
-    FileTable ft("../csv/bnumber.csv");
 
     std::for_each(ft.begin(),ft.end(), [&line](const std::string& record){ line = record; });
 
     ASSERT_THAT(line,Eq("0060552,Silibin"));
-
 }
