@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Index.h"
+#include "Table.h"
 
 class Table;
 

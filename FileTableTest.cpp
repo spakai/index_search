@@ -40,38 +40,22 @@ TEST_F(FileTableTest, GetInvalidRowThatIsNegative) {
 	ASSERT_THROW(ft.getRow(-100), std::out_of_range);
 }
 
-TEST_F(FileTableTest, Iterator_NumberOfRecords) {
-
-    int numberOfRows=0;
-
-    std::for_each(ft.begin(),ft.end(), [&numberOfRows](const std::string& record){ ++numberOfRows; });
-     
-    ASSERT_THAT(numberOfRows,Eq(5));
-}
-
-TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForEach) {
-
-    std::string line; 
-
-    std::for_each(ft.begin(),ft.end(), [&line](const std::string& record){ line = record; });
-
-    ASSERT_THAT(line,Eq("0060552,Silibin"));
-}
-
 TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPreIncrement) {
-	std::string line;
+    Tokenizer tokens;
+	
 	for(auto it = ft.begin(); it != ft.end(); ++it) {
-		line = *it;
+		tokens = *it;
 	}
 
-	ASSERT_THAT(line,Eq("0060552,Silibin"));
+	ASSERT_THAT(tokens[0],Eq("0060552"));
 }
 
 TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPostIncrement) {
 	std::string line;
+    Tokenizer tokens;
 	for(auto it = ft.begin(); it != ft.end(); it++) {
-		line = *it;
+		tokens = *it;
 	}
 
-	ASSERT_THAT(line,Eq("0060552,Silibin"));
+	ASSERT_THAT(tokens[0],Eq("0060552"));
 }

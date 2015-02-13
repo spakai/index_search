@@ -5,6 +5,8 @@
 #include <fstream>
 #include <stdexcept>
 
+#include "Tokenizer.h"
+
 class Table {
     public:
         virtual int getNumberOfRows()=0;
@@ -27,8 +29,9 @@ class Table {
                 return (tmp);
             }
             
-            std::string operator*() {
-                return table->getRow(index);
+            Tokenizer& operator*() {
+                tokenizer.tokenize(table->getRow(index));
+                return tokenizer;
             }
             std::string& operator->();
             bool operator==(const Iterator& other) {
@@ -41,6 +44,7 @@ class Table {
 
         protected:
             Table *table;
+            Tokenizer tokenizer;
             int index;
             bool eof;
     };

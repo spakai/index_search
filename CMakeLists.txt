@@ -11,12 +11,11 @@ set(sources
    main.cpp
    FileTable.cpp
    PrimaryTreeIndex.cpp
-   Tokenizer.cpp
-   GetLineTokenizer.cpp)
+   Tokenizer.cpp)
 
 set(test_sources
    FileTableTest.cpp
-   GetLineTokenizerTest.cpp)
+   TokenizerTest.cpp)
 
 add_executable(test ${test_sources} ${sources})
 
