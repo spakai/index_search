@@ -10,7 +10,7 @@ class Tokenizer {
     public:
         Tokenizer() {};
         ~Tokenizer() {};
-        Tokenizer& tokenize(const std::string& csvrow);
+        Tokenizer& tokenize(const std::string& csvrow, char delim);
         std::string& operator[] (unsigned int i);
         unsigned int size() const;
 

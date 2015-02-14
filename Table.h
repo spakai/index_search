@@ -30,7 +30,7 @@ class Table {
             }
             
             Tokenizer& operator*() {
-                tokenizer.tokenize(table->getRow(index));
+                tokenizer.tokenize(table->getRow(index),',');
                 return tokenizer;
             }
             std::string& operator->();
