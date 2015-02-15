@@ -3,8 +3,9 @@
 
 class PrimaryTreeIndex: public Index {
 	public:
- 		virtual void buildIndex(Table & table, int column)=0;
+ 		virtual void buildIndex(Table & table, int column);
+        int size() const;
 
 	private:
-		std::map<std::string,int > index;
+        std::map<std::string,int> index;
 };

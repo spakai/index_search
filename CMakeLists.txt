@@ -15,7 +15,8 @@ set(sources
 
 set(test_sources
    FileTableTest.cpp
-   TokenizerTest.cpp)
+   TokenizerTest.cpp 
+   PrimaryTreeIndexTest.cpp)
 
 add_executable(test ${test_sources} ${sources})
 
