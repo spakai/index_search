@@ -51,7 +51,7 @@ TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPreIncrement) {
 }
 
 TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPostIncrement) {
-	std::string line;
+    std::string line;
     Tokenizer tokens;
 	for(auto it = ft.begin(); it != ft.end(); it++) {
 		tokens = *it;

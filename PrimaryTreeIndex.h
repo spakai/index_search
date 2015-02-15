@@ -3,7 +3,7 @@
 
 class PrimaryTreeIndex: public Index {
 	public:
- 		virtual void buildIndex(Table & table, int column);
+        virtual void buildIndex(Table & table, int column);
         int size() const;
 
 	private:
