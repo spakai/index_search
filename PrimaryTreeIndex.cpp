@@ -1,10 +1,9 @@
 #include "PrimaryTreeIndex.h"
 
 void PrimaryTreeIndex::buildIndex(Table & table, int column) {
-    int offset_index=0;
-    for(auto it=table.begin(); it!=table.end(); ++it) {
-        // key is row column and value is offset's index or basically row no
-        index.insert( std::pair<std::string, int>((*it)[column], offset_index++) );
+    int rowno = 0;
+    for(auto currentRow : table) {
+        index.insert( std::pair<std::string, int>(currentRow[column], rowno++) );
 	}
 }
 
