@@ -4,6 +4,7 @@
 class PrimaryTreeIndex: public Index {
 	public:
         virtual void buildIndex(Table & table, int column);
+        virtual int lookup(const std::string& key);
         int size() const;
 
 	private:
