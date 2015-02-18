@@ -8,16 +8,32 @@ using namespace testing;
 
 TEST(PrimaryIndex,GetSizeofIndex) {
     FileTable ft;
-    ft.init("../csv/bnumber.csv");
+    ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.size(), Eq(5));      
+    ASSERT_THAT(index.size(), Eq(56));      
 }
 
 TEST(PrimaryIndex,ExactMatchLookup) {
     FileTable ft;
-    ft.init("../csv/bnumber.csv");
+    ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.lookup("006055"), Eq(0));      
+    ASSERT_THAT(index.lookup("01386"), Eq(25));      
+}
+
+TEST(PrimaryIndex,BestMatchLookup) {
+    FileTable ft;
+    ft.init("../csv/bnumber2.csv");
+    PrimaryTreeIndex index;
+    index.buildIndex(ft, 0);
+    ASSERT_THAT(index.lookup("019354"), Eq(51)); 
+}
+
+TEST(PrimaryIndex,BestMatchLookupEnd) {
+    FileTable ft;
+    ft.init("../csv/bnumber2.csv");
+    PrimaryTreeIndex index;
+    index.buildIndex(ft, 0);
+    ASSERT_THAT(index.lookup("019956"), Eq(55));      
 }
