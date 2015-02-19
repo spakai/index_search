@@ -16,21 +16,7 @@ int PrimaryTreeIndex::lookup(const std::string& key) const {
     auto lower_bound = bounds.first;
     auto upper_bound = bounds.second;
 
-    //Best match
-    if(lower_bound == index.end()) {
-        std::map<std::string,int>::const_reverse_iterator rbegin(upper_bound); 
-        std::map<std::string,int>::const_reverse_iterator rend(index.begin()); 
-        for(auto it = rbegin; it!=rend; it++) {
-            auto idx = key.find(it->first);
-            if(idx != std::string::npos) {
-                return it->second;
-            } 
-        }
-        
-    }
-
-    //Exact match
-    if(lower_bound->first == key) {
+    if(lower_bound != index.end() && lower_bound->first == key) {
         return lower_bound->second; 
     } else {
         std::map<std::string,int>::const_reverse_iterator rbegin(upper_bound); 
@@ -44,5 +30,4 @@ int PrimaryTreeIndex::lookup(const std::string& key) const {
     }
 
     return -1;
-
 }

@@ -37,3 +37,11 @@ TEST(PrimaryIndex,BestMatchLookupEnd) {
     index.buildIndex(ft, 0);
     ASSERT_THAT(index.lookup("019956"), Eq(55));      
 }
+
+TEST(PrimaryIndex,NoMatchLookup) {
+    FileTable ft;
+    ft.init("../csv/bnumber2.csv");
+    PrimaryTreeIndex index;
+    index.buildIndex(ft, 0);
+    ASSERT_THAT(index.lookup("0060175559138"), Eq(-1));      
+}
