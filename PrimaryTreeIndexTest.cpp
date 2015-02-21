@@ -6,7 +6,7 @@
 
 using namespace testing;
 
-TEST(PrimaryIndex,GetSizeofIndex) {
+TEST(PrimaryTreeIndex,GetSizeofIndex) {
     FileTable ft;
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
@@ -14,7 +14,7 @@ TEST(PrimaryIndex,GetSizeofIndex) {
     ASSERT_THAT(index.size(), Eq(56));      
 }
 
-TEST(PrimaryIndex,ExactMatchLookup) {
+TEST(PrimaryTreeIndex,ExactMatchLookup) {
     FileTable ft;
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
@@ -22,7 +22,7 @@ TEST(PrimaryIndex,ExactMatchLookup) {
     ASSERT_THAT(index.lookup("01386"), Eq(25));      
 }
 
-TEST(PrimaryIndex,BestMatchLookup) {
+TEST(PrimaryTreeIndex,BestMatchLookup) {
     FileTable ft;
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
@@ -30,7 +30,7 @@ TEST(PrimaryIndex,BestMatchLookup) {
     ASSERT_THAT(index.lookup("019354"), Eq(51)); 
 }
 
-TEST(PrimaryIndex,BestMatchLookupEnd) {
+TEST(PrimaryTreeIndex,BestMatchLookupEnd) {
     FileTable ft;
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
@@ -38,7 +38,7 @@ TEST(PrimaryIndex,BestMatchLookupEnd) {
     ASSERT_THAT(index.lookup("019956"), Eq(55));      
 }
 
-TEST(PrimaryIndex,NoMatchLookup) {
+TEST(PrimaryTreeIndex,NoMatchLookup) {
     FileTable ft;
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;

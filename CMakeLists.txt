@@ -11,12 +11,16 @@ set(sources
    main.cpp
    FileTable.cpp
    PrimaryTreeIndex.cpp
+   PrimaryHashIndex.cpp
    Tokenizer.cpp)
 
 set(test_sources
    FileTableTest.cpp
    TokenizerTest.cpp 
-   PrimaryTreeIndexTest.cpp)
+   PrimaryTreeIndexTest.cpp
+   PrimaryHashIndexTest.cpp)
+
+
 
 add_executable(test ${test_sources} ${sources})
 
