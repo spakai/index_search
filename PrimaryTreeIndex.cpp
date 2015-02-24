@@ -17,14 +17,11 @@ int PrimaryTreeIndex::exactMatch(const std::string& key) const {
 } 
 
 int PrimaryTreeIndex::bestMatch(const std::string& key) const {
-    auto bounds = index.equal_range(key);
-    auto lower_bound = bounds.first;
-    auto upper_bound = bounds.second;
-
+    auto lower_bound = index.lower_bound(key);
     if(lower_bound != index.end() && lower_bound->first == key) {
         return lower_bound->second; 
     } else {
-        std::map<std::string,int>::const_reverse_iterator rbegin(upper_bound); 
+        std::map<std::string,int>::const_reverse_iterator rbegin(lower_bound); 
         std::map<std::string,int>::const_reverse_iterator rend(index.begin()); 
         for(auto it = rbegin; it!=rend; it++) {
             auto idx = key.find(it->first);
