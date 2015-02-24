@@ -11,6 +11,7 @@ set(sources
    main.cpp
    FileTable.cpp
    PrimaryTreeIndex.cpp
+   SecondaryTreeIndex.cpp
    PrimaryHashIndex.cpp
    Tokenizer.cpp)
 
