@@ -19,7 +19,7 @@ TEST(PrimaryTreeIndex,ExactMatchLookup) {
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.lookup("01386"), Eq(25));      
+    ASSERT_THAT(index.exactMatch("01386"), Eq(25));      
 }
 
 TEST(PrimaryTreeIndex,BestMatchLookup) {
@@ -27,7 +27,7 @@ TEST(PrimaryTreeIndex,BestMatchLookup) {
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.lookup("019354"), Eq(51)); 
+    ASSERT_THAT(index.bestMatch("019354"), Eq(51)); 
 }
 
 TEST(PrimaryTreeIndex,BestMatchLookupEnd) {
@@ -35,7 +35,7 @@ TEST(PrimaryTreeIndex,BestMatchLookupEnd) {
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.lookup("019956"), Eq(55));      
+    ASSERT_THAT(index.bestMatch("019956"), Eq(55));      
 }
 
 TEST(PrimaryTreeIndex,NoMatchLookup) {
@@ -43,5 +43,5 @@ TEST(PrimaryTreeIndex,NoMatchLookup) {
     ft.init("../csv/bnumber2.csv");
     PrimaryTreeIndex index;
     index.buildIndex(ft, 0);
-    ASSERT_THAT(index.lookup("0060175559138"), Eq(-1));      
+    ASSERT_THAT(index.bestMatch("0060175559138"), Eq(-1));      
 }

@@ -11,7 +11,12 @@ int PrimaryTreeIndex::size() const {
     return index.size();
 }
 
-int PrimaryTreeIndex::lookup(const std::string& key) const {
+int PrimaryTreeIndex::exactMatch(const std::string& key) const {
+    auto it = index.find(key);
+    return it == index.end() ? -1 : it->second;
+} 
+
+int PrimaryTreeIndex::bestMatch(const std::string& key) const {
     auto bounds = index.equal_range(key);
     auto lower_bound = bounds.first;
     auto upper_bound = bounds.second;
