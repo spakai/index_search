@@ -3,30 +3,28 @@
 
 using namespace testing;
 
-TEST(AToken,GetFirstColumnofARow) {
-    std::string s{"A,B,C"};
-    Tokenizer tok;
+class TokenizerTest : public Test {
+    public:
+        Tokenizer tok;
+        std::string s{"A,B,C"};
+};
+
+TEST_F(TokenizerTest,GetFirstColumnofARow) {
     tok.tokenize(s,',');
     ASSERT_THAT(tok[0],Eq("A"));
 }
 
-TEST(AToken, GetLastColumnofARow) {
-    std::string s{"A,B,C"};
-    Tokenizer tok;
+TEST_F(TokenizerTest, GetLastColumnofARow) {
     tok.tokenize(s,',');
     ASSERT_THAT(tok[2], Eq("C"));
 }
 
-TEST(AToken, GetInvalidColumnofARow) {
-    std::string s{"A,B,C"};
-    Tokenizer tok;
+TEST_F(TokenizerTest, GetInvalidColumnofARow) {
     tok.tokenize(s,',');
     ASSERT_THROW(tok[100], std::out_of_range);
 }
 
-TEST(AToken, NumberOfTokens) {
-    std::string s{"A,B,C"};
-    Tokenizer tok;
+TEST_F(TokenizerTest, NumberOfTokens) {
     tok.tokenize(s,',');
     ASSERT_THAT(tok.size(), Eq(3));
 }
