@@ -4,7 +4,7 @@
 class PrimaryHashIndex: public Index {
 	public:
         virtual void buildIndex(Table & table, int column);
-        virtual int lookup(const std::string& key) const;
+        virtual int exactMatch(const std::string& key) const;
         int size() const;
 
 	private:

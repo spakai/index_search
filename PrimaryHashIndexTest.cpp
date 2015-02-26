@@ -20,9 +20,9 @@ TEST_F(PrimaryHashIndexTest,GetSizeofIndex) {
 }
 
 TEST_F(PrimaryHashIndexTest,ExactMatchLookup) {
-    ASSERT_THAT(index.lookup("01386"), Eq(25));      
+    ASSERT_THAT(index.exactMatch("01386"), Eq(25));      
 }
 
 TEST_F(PrimaryHashIndexTest,NoMatchLookup) {
-    ASSERT_THAT(index.lookup("0060175559138"), Eq(-1));      
+    ASSERT_THAT(index.exactMatch("0060175559138"), Eq(-1));      
 }
