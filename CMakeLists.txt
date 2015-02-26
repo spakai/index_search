@@ -19,6 +19,7 @@ set(test_sources
    FileTableTest.cpp
    TokenizerTest.cpp 
    PrimaryTreeIndexTest.cpp
+   SecondaryTreeIndexTest.cpp
    PrimaryHashIndexTest.cpp)
 
 

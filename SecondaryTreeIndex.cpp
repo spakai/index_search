@@ -11,6 +11,7 @@ int SecondaryTreeIndex::size() const {
     return index.size();
 }
 
-int SecondaryTreeIndex::lookup(const std::string& key) const {
-    return -1;
+std::vector<int> SecondaryTreeIndex::exactMatch(const std::string& key) const {
+    std::vector<int> tmp{-1};
+    return tmp;
 }
