@@ -60,13 +60,11 @@ TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPostIncrement) {
 	ASSERT_THAT(tokens[0],Eq("0060552"));
 }
 
-TEST_F(FileTableTest, Iterator_ForRange) {
+TEST_F(FileTableTest, Iterator_ReadTillLastRowUsingForRange) {
     Tokenizer tokens;
     for(auto & currentRow : ft) {
         tokens = currentRow; 
-        break;
     } 
 
-    ASSERT_THAT(tokens[0],Eq("0060"));
-
+    ASSERT_THAT(tokens[0],Eq("0060552"));
 }
