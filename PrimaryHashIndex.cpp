@@ -12,10 +12,8 @@ int PrimaryHashIndex::size() const {
 }
 
 int PrimaryHashIndex::exactMatch(const std::string& key) const {
-    auto lookup = index.find(key);
-    if(lookup != index.end() && lookup->first == key) {
-        return lookup->second; 
-    }
+    auto it = index.find(key);
+    return it == index.end() ? -1 : it->second;
+} 
 
-    return -1;
-}
+
