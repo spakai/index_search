@@ -11,15 +11,13 @@ int SecondaryTreeIndex::size() const {
     return index.size();
 }
 
-std::vector<int> SecondaryTreeIndex::exactMatch(const std::string& key) const {
-    std::vector<int> values;
+std::set<int> SecondaryTreeIndex::exactMatch(const std::string& key) const {
+    std::set<int> values;
     auto bounds = index.equal_range(key);
-    auto lower_bound = bounds.first;
-    auto upper_bound = bounds.second; 
 
-    if(lower_bound != index.end()) {
-        for(auto it = lower_bound; it != upper_bound; ++it) {
-            values.push_back(it->second);
+    if(bounds.first != index.end()) {
+        for(auto it = bounds.first; it != bounds.second; ++it) {
+            values.insert(it->second);
         }         
     } 
     

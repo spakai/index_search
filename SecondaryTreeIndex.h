@@ -1,10 +1,11 @@
 #include "Index.h"
 #include <map>
+#include <set>
 
 class SecondaryTreeIndex: public Index {
 	public:
         virtual void buildIndex(Table & table, int column);
-        virtual std::vector<int> exactMatch(const std::string& key) const;
+        virtual std::set<int> exactMatch(const std::string& key) const;
         int size() const;
 
 	private:
