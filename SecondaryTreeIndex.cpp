@@ -27,6 +27,8 @@ std::set<int> SecondaryTreeIndex::exactMatch(const std::string& key) const {
 std::set<int> SecondaryTreeIndex::bestMatch(const std::string& key) const {
     std::set<int> values;
     auto bounds = index.equal_range(key);
+    bool foundBestMatch {false};
+    std::string bestMatch; 
 
     if(bounds.first != index.end() && bounds.first->first == key) {
         for(auto it = bounds.first; it != bounds.second; ++it) {
@@ -38,7 +40,14 @@ std::set<int> SecondaryTreeIndex::bestMatch(const std::string& key) const {
         for(auto it = rbegin; it!=rend; it++) {
             auto idx = key.find(it->first);
             if(idx != std::string::npos) {
-                values.insert(it->second);
+                if(!foundBestMatch) {
+                    foundBestMatch = true;
+                    bestMatch = it->first;
+                }
+
+                if(bestMatch == it->first) { 
+                    values.insert(it->second);
+                }
             } 
         }
  
