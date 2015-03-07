@@ -31,4 +31,6 @@ TEST_F(SecondaryTreeIndexTest,ExactMatchWhenBestMatchLookupIsCalled) {
     ASSERT_THAT(index.bestMatch("00605"), ElementsAre(0,1));      
 }
 
-
+TEST_F(SecondaryTreeIndexTest,AllMatchesLookup) {
+    ASSERT_THAT(index.allMatches("006051"), ElementsAre(0,1,3));      
+}
