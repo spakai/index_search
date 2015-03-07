@@ -24,7 +24,7 @@ TEST_F(PrimaryTreeIndexTest,ExactMatchWhenExactMatchLookupIsCalled) {
 }
 
 TEST_F(PrimaryTreeIndexTest,ExactMatchWhenBestMatchLookupIsCalled) {
-    ASSERT_THAT(index.exactMatch("01386"), Eq(25));      
+    ASSERT_THAT(index.bestMatch("01386"), Eq(25));      
 }
 
 TEST_F(PrimaryTreeIndexTest,BestMatchLookup) {
