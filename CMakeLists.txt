@@ -20,8 +20,8 @@ set(test_sources
    TokenizerTest.cpp 
    PrimaryTreeIndexTest.cpp
    SecondaryTreeIndexTest.cpp
-   PrimaryHashIndexTest.cpp)
-
+   PrimaryHashIndexTest.cpp
+   IndexBenchMarkTest.cpp)
 
 
 add_executable(test ${test_sources} ${sources})
