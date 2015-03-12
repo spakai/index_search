@@ -12,12 +12,10 @@ set(sources
    FileTable.cpp
    PrimaryTreeIndex.cpp
    SecondaryTreeIndex.cpp
-   PrimaryHashIndex.cpp
-   Tokenizer.cpp)
+   PrimaryHashIndex.cpp)
 
 set(test_sources
    FileTableTest.cpp
-   TokenizerTest.cpp 
    PrimaryTreeIndexTest.cpp
    SecondaryTreeIndexTest.cpp
    PrimaryHashIndexTest.cpp
