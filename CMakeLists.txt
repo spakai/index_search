@@ -12,7 +12,8 @@ set(sources
    FileTable.cpp
    PrimaryTreeIndex.cpp
    SecondaryTreeIndex.cpp
-   PrimaryHashIndex.cpp)
+   PrimaryHashIndex.cpp
+   TestTimer.cpp)
 
 set(test_sources
    FileTableTest.cpp
