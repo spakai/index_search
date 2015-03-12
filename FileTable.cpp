@@ -26,8 +26,7 @@ int FileTable::getNumberOfRows() {
 	return offsets.size();
 }
 
-std::string& FileTable::getRow(int index) {
-
+std::vector<std::string> FileTable::getRow(int index) {
     if(index < 0 || index > getNumberOfRows() - 1) { 
         throw std::out_of_range("index out of range");
     }
@@ -37,5 +36,16 @@ std::string& FileTable::getRow(int index) {
     csv_file.read(buffer, lengths[index]);
     currentLine.assign(buffer,lengths[index]);
     delete[] buffer;
-    return currentLine;
+    return tokenize(currentLine,',');
+}
+
+std::vector<std::string> FileTable::tokenize(const std::string& csvrow, char delim) {
+    std::vector<std::string> tokens;
+    std::istringstream ss(csvrow);
+    while (!ss.eof()) {
+        std::string str;
+        getline(ss, str, delim);
+        tokens.push_back(str); 
+    }
+   return tokens;
 }

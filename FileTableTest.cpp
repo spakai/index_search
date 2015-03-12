@@ -19,16 +19,22 @@ TEST_F(FileTableTest,OffsetsAndLengths) {
 }
 
 TEST_F(FileTableTest, GetRow0) {
-	ASSERT_THAT(ft.getRow(0), StrEq("0060,Malaysia"));
+    auto token = ft.getRow(0);
+    auto str = token[0] + ',' + token[1];
+	ASSERT_THAT(str, StrEq("0060,Malaysia"));
 
 }
 
 TEST_F(FileTableTest, GetRow3) {
-	ASSERT_THAT(ft.getRow(3), StrEq("006055269705,Silibin"));
+    auto token = ft.getRow(3);
+    auto str = token[0] + ',' + token[1];
+	ASSERT_THAT(str, StrEq("006055269705,Silibin"));
 }
 
 TEST_F(FileTableTest, GetRow4) {
-	ASSERT_THAT(ft.getRow(4), StrEq("0060552,Silibin"));
+    auto token = ft.getRow(4);
+    auto str = token[0] + ',' + token[1];
+	ASSERT_THAT(str, StrEq("0060552,Silibin"));
 }
 
 TEST_F(FileTableTest, GetInvalidRowThatIsLargerThanMaxRows) {
@@ -41,7 +47,7 @@ TEST_F(FileTableTest, GetInvalidRowThatIsNegative) {
 }
 
 TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPreIncrement) {
-    Tokenizer tokens;
+    std::vector<std::string> tokens;
 	
 	for(auto it = ft.begin(); it != ft.end(); ++it) {
 		tokens = *it;
@@ -51,8 +57,7 @@ TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPreIncrement) {
 }
 
 TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPostIncrement) {
-    std::string line;
-    Tokenizer tokens;
+    std::vector<std::string> tokens;
 	for(auto it = ft.begin(); it != ft.end(); it++) {
 		tokens = *it;
 	}
@@ -61,8 +66,8 @@ TEST_F(FileTableTest,Iterator_ReadTillLastRowUsingForAndPostIncrement) {
 }
 
 TEST_F(FileTableTest, Iterator_ReadTillLastRowUsingForRange) {
-    Tokenizer tokens;
-    for(auto & currentRow : ft) {
+    std::vector<std::string> tokens;
+    for(auto currentRow : ft) {
         tokens = currentRow; 
     } 
 
