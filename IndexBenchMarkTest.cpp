@@ -16,14 +16,14 @@ class IndexBenchMarkTest : public Test {
         std::vector<std::string> keysToSearch;
 
         void SetUp() override {
-            ft.init("../csv/bnumber2.csv");
+            ft.init("../csv/large_data.csv");
             treeIndex.buildIndex(ft, 0);
             hashIndex.buildIndex(ft, 0);
             int rows = ft.getNumberOfRows();
 
             std::default_random_engine dre;
             std::uniform_int_distribution<int> di(0,rows);
-            for (int i=0; i<20; ++i) {
+            for (int i=0; i<200; ++i) {
                 auto tokens = ft.getRow(di(dre));
                 keysToSearch.push_back(tokens[0]);
             }
@@ -36,8 +36,6 @@ TEST_F(IndexBenchMarkTest,PrimaryTreeIndex) {
     for(auto it=keysToSearch.begin(); it!= keysToSearch.end(); ++it) {
         treeIndex.exactMatch(*it);
     }
-
-   ASSERT_THAT(keysToSearch.size(), Eq(20));      
 }
 
 TEST_F(IndexBenchMarkTest,PrimaryHashIndex) {
@@ -45,7 +43,5 @@ TEST_F(IndexBenchMarkTest,PrimaryHashIndex) {
     for(auto it=keysToSearch.begin(); it!= keysToSearch.end(); ++it) {
         hashIndex.exactMatch(*it);
     }
-
-   ASSERT_THAT(keysToSearch.size(), Eq(20));      
 }
 
