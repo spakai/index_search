@@ -13,7 +13,8 @@ class IndexBenchMarkTest : public Test {
         FileTable ft;
         PrimaryTreeIndex treeIndex;
         PrimaryHashIndex hashIndex;
-        std::vector<std::string> keysToSearch;
+        std::vector<std::string> ExactKeysToSearch;
+        std::vector<std::string> BestMatchKeysToSearch;
 
         void SetUp() override {
             ft.init("../csv/large_data.csv");
@@ -23,25 +24,33 @@ class IndexBenchMarkTest : public Test {
 
             std::default_random_engine dre;
             std::uniform_int_distribution<int> di(0,rows);
-            for (int i=0; i<200; ++i) {
+            for (int i=0; i<500; ++i) {
                 auto tokens = ft.getRow(di(dre));
-                keysToSearch.push_back(tokens[0]);
+                ExactKeysToSearch.push_back(tokens[0]);
+                BestMatchKeysToSearch.push_back(tokens[0] + "999");
             }
             
         } 
 };
 
-TEST_F(IndexBenchMarkTest,PrimaryTreeIndex) {
-    TestTimer timer("Primary Tree Index");
-    for(auto it=keysToSearch.begin(); it!= keysToSearch.end(); ++it) {
+TEST_F(IndexBenchMarkTest,PrimaryTreeIndexExactMatch) {
+    TestTimer timer("Primary Tree Index Exact Match", ExactKeysToSearch.size());
+    for(auto it=ExactKeysToSearch.begin(); it!= ExactKeysToSearch.end(); ++it) {
         treeIndex.exactMatch(*it);
     }
 }
 
-TEST_F(IndexBenchMarkTest,PrimaryHashIndex) {
-    TestTimer timer("Primary Hash Index");
-    for(auto it=keysToSearch.begin(); it!= keysToSearch.end(); ++it) {
+TEST_F(IndexBenchMarkTest,PrimaryHashIndexExactMatch) {
+    TestTimer timer("Primary Hash Index Exact Match", ExactKeysToSearch.size());
+    for(auto it=ExactKeysToSearch.begin(); it!= ExactKeysToSearch.end(); ++it) {
         hashIndex.exactMatch(*it);
+    }
+}
+
+TEST_F(IndexBenchMarkTest,PrimaryTreeIndexBestMatch) {
+    TestTimer timer("Primary Tree Index Best Match",BestMatchKeysToSearch.size());
+    for(auto it=BestMatchKeysToSearch.begin(); it!= BestMatchKeysToSearch.end(); ++it) {
+        treeIndex.bestMatch(*it);
     }
 }
 
