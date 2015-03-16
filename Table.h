@@ -57,5 +57,4 @@ class Table {
         std::ifstream csv_file;
         std::vector<int> offsets;
         std::vector<int> lengths;
-        std::string currentLine;
 };

@@ -34,6 +34,7 @@ std::vector<std::string> FileTable::getRow(int index) {
     csv_file.seekg(offsets[index], std::ios_base::beg);
     char * buffer = new char[lengths[index]];
     csv_file.read(buffer, lengths[index]);
+    std::string currentLine;
     currentLine.assign(buffer,lengths[index]);
     delete[] buffer;
     return tokenize(currentLine,',');
