@@ -13,6 +13,6 @@ TestTimer::~TestTimer() {
    Stop = chrono::system_clock::now();
    Elapsed = chrono::duration_cast<chrono::microseconds>(Stop - Start);
    cout << endl <<
-      Text << " average time = " << Elapsed.count() * 0.001 / Transactions << "ms" << endl;
+      Text << " Time taken = " << Elapsed.count() * 0.001 << "ms for " << Transactions << " transactions" << endl;
 }
 
