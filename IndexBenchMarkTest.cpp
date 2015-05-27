@@ -23,8 +23,8 @@ class IndexBenchMarkTest : public Test {
             int rows = ft.getNumberOfRows();
 
             std::default_random_engine dre;
-            std::uniform_int_distribution<int> di(0,rows);
-            for (int i=0; i<500; ++i) {
+            std::uniform_int_distribution<int> di(0,rows-1);
+            for (int i=0; i<5000; ++i) {
                 auto tokens = ft.getRow(di(dre));
                 ExactKeysToSearch.push_back(tokens[0]);
                 BestMatchKeysToSearch.push_back(tokens[0] + "999");
