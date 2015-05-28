@@ -14,5 +14,8 @@ TestTimer::~TestTimer() {
    Elapsed = chrono::duration_cast<chrono::microseconds>(Stop - Start);
    cout << endl <<
       Text << " Time taken = " << Elapsed.count() * 0.001 << "ms for " << Transactions << " transactions" << endl;
+
+   cout << endl <<
+      Text << " TPS = " << 1000 / (Elapsed.count() * 0.001/Transactions) << endl;
 }
 
