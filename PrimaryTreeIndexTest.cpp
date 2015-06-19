@@ -1,5 +1,5 @@
 #include "gmock/gmock.h" 
-#include "PrimaryTreeIndex.h"
+#include "PrimaryTreeIndex.cpp"
 #include "FileTable.h"
 
 using namespace testing;
@@ -7,7 +7,7 @@ using namespace testing;
 class PrimaryTreeIndexTest : public Test {
     public:
         FileTable ft;
-        PrimaryTreeIndex index;
+        PrimaryTreeIndex<int> index;
 
         void SetUp() override {
             ft.init("../csv/bnumber2.csv");

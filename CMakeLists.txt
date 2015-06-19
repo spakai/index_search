@@ -20,7 +20,7 @@ set(test_sources
    PrimaryTreeIndexTest.cpp
    SecondaryTreeIndexTest.cpp
    PrimaryHashIndexTest.cpp
-   IndexBenchMarkTest.cpp)
+   IndexBenchMarkTest)
 
 
 add_executable(test ${test_sources} ${sources})
