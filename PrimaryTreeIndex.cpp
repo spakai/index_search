@@ -25,8 +25,8 @@ T PrimaryTreeIndex<T>::bestMatch(const std::string& key) const {
     if(lower_bound != index.end() && lower_bound->first == key) {
         return lower_bound->second; 
     } else {
-        std::map<std::string,int>::const_reverse_iterator rbegin(lower_bound); 
-        std::map<std::string,int>::const_reverse_iterator rend(index.begin()); 
+        typename std::map<std::string,T>::const_reverse_iterator rbegin(lower_bound); 
+        typename std::map<std::string,T>::const_reverse_iterator rend(index.begin()); 
         for(auto it = rbegin; it!=rend; it++) {
             auto idx = key.find(it->first);
             if(idx != std::string::npos) {
