@@ -16,6 +16,6 @@ TestTimer::~TestTimer() {
       Text << " Time taken = " << Elapsed.count() * 0.001 << "ms for " << Transactions << " transactions" << endl;
 
    cout << endl <<
-      Text << " TPS = " << 1000 / (Elapsed.count() * 0.001/Transactions) << endl;
+      Text << " TPS = " << static_cast<long> (1000 / (Elapsed.count() * 0.001/Transactions)) << endl;
 }
 
