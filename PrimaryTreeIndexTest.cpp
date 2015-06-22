@@ -36,9 +36,9 @@ TEST_F(PrimaryTreeIndexTest,BestMatchLookupEnd) {
 }
 
 TEST_F(PrimaryTreeIndexTest,NoMatchLookupWhenBestMatchIsCalled) {
-    ASSERT_THAT(index.bestMatch("0060175559138"), Eq(-1));      
+    ASSERT_THROW(index.bestMatch("0060175559138"), IndexSearchException);      
 }
 
 TEST_F(PrimaryTreeIndexTest,NoMatchLookupWhenExactMatchIsCalled) {
-    ASSERT_THAT(index.exactMatch("0060175559138"), Eq(-1));      
+    ASSERT_THROW(index.exactMatch("0060175559138"), IndexSearchException);      
 }

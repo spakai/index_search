@@ -1,4 +1,5 @@
 #include "Index.h"
+#include "IndexSearchException.h"
 #include <map>
 
 template <typename T>

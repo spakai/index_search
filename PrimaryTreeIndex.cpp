@@ -16,7 +16,7 @@ int PrimaryTreeIndex<T>::size() const {
 template <typename T>
 T PrimaryTreeIndex<T>::exactMatch(const std::string& key) const {
     auto it = index.find(key);
-    return it == index.end() ? -1 : it->second;
+    return it == index.end() ? throw IndexSearchException("No match found") : it->second;
 } 
 
 template <typename T>
@@ -35,5 +35,5 @@ T PrimaryTreeIndex<T>::bestMatch(const std::string& key) const {
         }
     }
 
-    return -1;
+    throw IndexSearchException("No match found");
 }
