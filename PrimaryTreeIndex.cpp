@@ -14,13 +14,17 @@ int PrimaryTreeIndex<T>::size() const {
 }
 
 template <typename T>
-T PrimaryTreeIndex<T>::exactMatch(const std::string& key) const {
+const T&  PrimaryTreeIndex<T>::exactMatch(const std::string& key) const {
     auto it = index.find(key);
-    return it == index.end() ? throw IndexSearchException("No match found") : it->second;
+    if(it == index.end()) {
+        throw IndexSearchException("No match found"); 
+    } else {
+        return it->second;
+    }
 } 
 
 template <typename T>
-T PrimaryTreeIndex<T>::bestMatch(const std::string& key) const {
+const T& PrimaryTreeIndex<T>::bestMatch(const std::string& key) const {
     auto lower_bound = index.lower_bound(key);
     if(lower_bound != index.end() && lower_bound->first == key) {
         return lower_bound->second; 
