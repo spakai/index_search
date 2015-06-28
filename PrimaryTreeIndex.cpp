@@ -1,10 +1,17 @@
 #include "PrimaryTreeIndex.h"
 
-template <typename T>
-void PrimaryTreeIndex<T>::buildIndex(Table & table, int column) {
+template <> inline
+void PrimaryTreeIndex<int>::buildIndex(Table & table, int index_column) {
     int rowno = 0;
     for(auto currentRow : table) {
-        index.emplace(currentRow[column], rowno++);
+        index.emplace(currentRow[index_column], rowno++);
+    }
+}
+
+template <> inline
+void PrimaryTreeIndex<std::string>::buildIndex(Table & table, int index_column) {
+    for(auto currentRow : table) {
+        index.emplace(currentRow[index_column], currentRow[index_column]);
     }
 }
 
