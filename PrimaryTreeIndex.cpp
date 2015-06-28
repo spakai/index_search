@@ -9,9 +9,13 @@ void PrimaryTreeIndex<int>::buildIndex(Table & table, int index_column) {
 }
 
 template <> inline
-void PrimaryTreeIndex<std::string>::buildIndex(Table & table, int index_column) {
+void PrimaryTreeIndex<int>::buildIndex(Table & table, int index_column, int value_column) {
+}
+
+template <> inline
+void PrimaryTreeIndex<std::string>::buildIndex(Table & table, int index_column, int value_column) {
     for(auto currentRow : table) {
-        index.emplace(currentRow[index_column], currentRow[index_column]);
+        index.emplace(currentRow[index_column], currentRow[value_column]);
     }
 }
 
