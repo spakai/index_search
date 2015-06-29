@@ -55,5 +55,5 @@ TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenExactMatchIsCalled) {
 }
 
 TEST_F(PrimaryTreeIndexTestWithColumn,ExactMatchWhenExactMatchLookupIsCalled) {
-    ASSERT_THAT(index.exactMatch("01386"), StrEq("Evasham"));
+    ASSERT_THAT(index.exactMatch("01386"), StrEq("Evesham"));
 }
