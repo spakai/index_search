@@ -15,6 +15,17 @@ class PrimaryTreeIndexTestWithRowId : public Test {
         } 
 };
 
+class PrimaryTreeIndexTestWithColumn : public Test {
+    public:
+        FileTable ft;
+        PrimaryTreeIndex<std::string> index;
+
+        void SetUp() override {
+            ft.init("../csv/bnumber2.csv");
+            index.buildIndex(ft,0,1);
+        } 
+};
+
 TEST_F(PrimaryTreeIndexTestWithRowId,GetSizeofIndex) {
    ASSERT_THAT(index.size(), Eq(56));      
 }
@@ -41,4 +52,8 @@ TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenBestMatchIsCalled) {
 
 TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenExactMatchIsCalled) {
     ASSERT_THROW(index.exactMatch("0060175559138"), IndexSearchException);      
+}
+
+TEST_F(PrimaryTreeIndexTestWithColumn,ExactMatchWhenExactMatchLookupIsCalled) {
+    ASSERT_THAT(index.exactMatch("01386"), StrEq("Evasham"));
 }
