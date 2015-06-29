@@ -4,7 +4,7 @@
 
 using namespace testing;
 
-class PrimaryTreeIndexTest : public Test {
+class PrimaryTreeIndexTestWithRowId : public Test {
     public:
         FileTable ft;
         PrimaryTreeIndex<int> index;
@@ -15,30 +15,30 @@ class PrimaryTreeIndexTest : public Test {
         } 
 };
 
-TEST_F(PrimaryTreeIndexTest,GetSizeofIndex) {
+TEST_F(PrimaryTreeIndexTestWithRowId,GetSizeofIndex) {
    ASSERT_THAT(index.size(), Eq(56));      
 }
 
-TEST_F(PrimaryTreeIndexTest,ExactMatchWhenExactMatchLookupIsCalled) {
+TEST_F(PrimaryTreeIndexTestWithRowId,ExactMatchWhenExactMatchLookupIsCalled) {
     ASSERT_THAT(index.exactMatch("01386"), Eq(25));      
 }
 
-TEST_F(PrimaryTreeIndexTest,ExactMatchWhenBestMatchLookupIsCalled) {
+TEST_F(PrimaryTreeIndexTestWithRowId,ExactMatchWhenBestMatchLookupIsCalled) {
     ASSERT_THAT(index.bestMatch("01386"), Eq(25));      
 }
 
-TEST_F(PrimaryTreeIndexTest,BestMatchLookup) {
+TEST_F(PrimaryTreeIndexTestWithRowId,BestMatchLookup) {
     ASSERT_THAT(index.bestMatch("019354"), Eq(51)); 
 }
 
-TEST_F(PrimaryTreeIndexTest,BestMatchLookupEnd) {
+TEST_F(PrimaryTreeIndexTestWithRowId,BestMatchLookupEnd) {
     ASSERT_THAT(index.bestMatch("019956"), Eq(55));      
 }
 
-TEST_F(PrimaryTreeIndexTest,NoMatchLookupWhenBestMatchIsCalled) {
+TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenBestMatchIsCalled) {
     ASSERT_THROW(index.bestMatch("0060175559138"), IndexSearchException);      
 }
 
-TEST_F(PrimaryTreeIndexTest,NoMatchLookupWhenExactMatchIsCalled) {
+TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenExactMatchIsCalled) {
     ASSERT_THROW(index.exactMatch("0060175559138"), IndexSearchException);      
 }
