@@ -57,3 +57,11 @@ TEST_F(PrimaryTreeIndexTestWithRowId,NoMatchLookupWhenExactMatchIsCalled) {
 TEST_F(PrimaryTreeIndexTestWithColumn,ExactMatchWhenExactMatchLookupIsCalled) {
     ASSERT_THAT(index.exactMatch("01386"), StrEq("Evesham"));
 }
+
+TEST_F(PrimaryTreeIndexTestWithColumn,BestMatchLookup) {
+    ASSERT_THAT(index.bestMatch("019354"), StrEq("Yeovil")); 
+}
+
+TEST_F(PrimaryTreeIndexTestWithColumn,NoMatchLookupWhenBestMatchIsCalled) {
+    ASSERT_THROW(index.bestMatch("0060175559138"), IndexSearchException);      
+}
