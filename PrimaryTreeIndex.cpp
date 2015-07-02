@@ -1,5 +1,13 @@
 #include "PrimaryTreeIndex.h"
 
+template <typename T>
+PrimaryTreeIndex<T>::PrimaryTreeIndex(std::function<int()> hash)
+            : hash(hash) {}
+
+template <typename T>
+PrimaryTreeIndex<T>::PrimaryTreeIndex()
+            : hash([]{return 0;}) {}
+ 
 template <> inline
 void PrimaryTreeIndex<int>::buildIndex(Table & table, int index_column) {
     int rowno = 0;
