@@ -12,7 +12,7 @@ class PrimaryTreeIndex: public Index {
             : hash(hash) 
         {}
         PrimaryTreeIndex()
-            : hash([]{})
+            : hash([]{return 0;})
         {}
         virtual void buildIndex(Table & table, int index_column);
         virtual void buildIndex(Table & table, int index_column, int value_column);
@@ -22,5 +22,5 @@ class PrimaryTreeIndex: public Index {
 
 	private:
         std::map<std::string,T> index;
-        std::function<void()> hash;
+        std::function<int()> hash;
 };
