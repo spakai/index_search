@@ -2,13 +2,15 @@
 
 #include "Index.h"
 #include "IndexSearchException.h"
+#include <vector>
+#include <memory>
 #include <map>
 #include <functional>
 
 template <typename T>
 class PrimaryTreeIndex: public Index {
 	public:
-        PrimaryTreeIndex(std::function<int()> hash);
+        PrimaryTreeIndex(std::function<int(const std::string & key)> hash);
         PrimaryTreeIndex();
         virtual void buildIndex(Table & table, int index_column);
         virtual void buildIndex(Table & table, int index_column, int value_column);
@@ -18,5 +20,6 @@ class PrimaryTreeIndex: public Index {
 
 	private:
         std::map<std::string,T> index;
-        std::function<int()> hash;
+        std::function<int(const std::string & key)> hash;
+        std::vector<std::shared_ptr<std::map<std::string,T>>> indexes;
 };
