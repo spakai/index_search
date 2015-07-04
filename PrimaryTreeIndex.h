@@ -19,7 +19,6 @@ class PrimaryTreeIndex: public Index {
         int size() const;
 
 	private:
-        std::map<std::string,T> index;
         std::function<int(const std::string & key)> hash;
         std::vector<std::shared_ptr<std::map<std::string,T>>> indexes;
 };
