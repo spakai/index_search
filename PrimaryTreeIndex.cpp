@@ -7,9 +7,6 @@ PrimaryTreeIndex<T>::PrimaryTreeIndex(std::function<int(const std::string & key)
 template <typename T>
 PrimaryTreeIndex<T>::PrimaryTreeIndex()
             : hash([] (const std::string & key){return 0;}) {
-        for(unsigned int n=0; n<10; n++) {
-            indexes.push_back(nullptr);
-        }
 }
 
 template <> inline
@@ -18,14 +15,13 @@ void PrimaryTreeIndex<int>::buildIndex(Table & table, int index_column) {
     for(auto currentRow : table) {
         std::string key = currentRow[index_column];
         int hashed_index = hash(key);
-        if(indexes.at(hashed_index) != nullptr) { 
-            auto index = indexes.at(hashed_index);
-            index->emplace(currentRow[index_column], rowno++);
-        } else {
+
+        if(indexes.at(hashed_index) == nullptr) { 
             indexes[hashed_index] = std::make_shared<std::map<std::string,int>>();     
-            auto index = indexes.at(hashed_index);
-            index->emplace(currentRow[index_column], rowno++);
         }
+
+        auto index = indexes.at(hashed_index);
+        index->emplace(currentRow[index_column], rowno++);
     }
 }
 
@@ -42,14 +38,13 @@ void PrimaryTreeIndex<std::string>::buildIndex(Table & table, int index_column, 
     for(auto currentRow : table) {
         std::string key = currentRow[index_column];
         int hashed_index = hash(key);
-        if(indexes.at(hashed_index) != nullptr) { 
-            auto index = indexes.at(hashed_index);
-            index->emplace(currentRow[index_column], currentRow[value_column]);
-        } else {
+
+        if(indexes.at(hashed_index) == nullptr) { 
             indexes[hashed_index] = std::make_shared<std::map<std::string,std::string>>();     
-            auto index = indexes.at(hashed_index);
-            index->emplace(currentRow[index_column], currentRow[value_column]);
         }
+
+        auto index = indexes.at(hashed_index);
+        index->emplace(currentRow[index_column], currentRow[value_column]);
     }
 }
 
