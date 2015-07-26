@@ -1,5 +1,5 @@
 #include "gmock/gmock.h" 
-#include "PrimaryTreeIndex.cpp"
+#include "PrimaryTreeIndex.h"
 #include "FileTable.h"
 
 using namespace testing;
