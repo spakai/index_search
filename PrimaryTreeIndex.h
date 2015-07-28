@@ -23,8 +23,7 @@ class PrimaryTreeIndexBase: public Index {
         void buildIndex(Table & table, int index_column, int value_column) {}
 
         const T& exactMatch(const std::string& key) const {
-            int hashed_index = hash(key);
-            auto index = indexes.at(hashed_index);
+            auto index = indexes.at(hash(key));
             auto it = index->find(key);
             if(it == index->end()) {
                 throw IndexSearchException("No match found"); 

@@ -8,7 +8,7 @@ class PrimaryTreeIndexTestWithRowId : public Test {
     public:
         FileTable ft;
         PrimaryTreeIndex<int> index;
-
+ 
         void SetUp() override {
             ft.init("../csv/bnumber2.csv");
             index.buildIndex(ft, 0);
@@ -25,6 +25,16 @@ class PrimaryTreeIndexTestWithColumn : public Test {
             index.buildIndex(ft,0,1);
         } 
 };
+
+TEST(PrimaryTreeIndexTestWithMultiMaps,GetSizeofIndex) {
+   FileTable ft;
+   ft.init("../csv/bnumber2.csv");
+   std::function<int(const std::string & key)> hash = [] (const std::string & key){return 0;};        
+   PrimaryTreeIndex<int> index(hash);
+   index.buildIndex(ft, 0);
+
+   ASSERT_THAT(index.size(), Eq(56));      
+}
 
 TEST_F(PrimaryTreeIndexTestWithRowId,GetSizeofIndex) {
    ASSERT_THAT(index.size(), Eq(56));      
