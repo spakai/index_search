@@ -29,15 +29,19 @@ class PrimaryTreeIndexTestWithColumn : public Test {
 TEST(PrimaryTreeIndexTestWithMultiMaps,GetSizeofIndex) {
    FileTable ft;
    ft.init("../csv/bnumber2.csv");
-   std::function<int(const std::string & key)> hash = [] (const std::string & key){return 0;};        
+   // std::function<int(const std::string & key)> hash = [] (const std::string & key){return 0;};        
+   std::function<int(const std::string & key)> hash = [] (const std::string & key){return std::stoi(key.substr(0,2));};        
+ 
    PrimaryTreeIndex<int> index(hash);
    index.buildIndex(ft, 0);
 
-   ASSERT_THAT(index.size(), Eq(56));      
+   ASSERT_THAT(index.size(), ElementsAre(0,56,0));      
 }
 
 TEST_F(PrimaryTreeIndexTestWithRowId,GetSizeofIndex) {
-   ASSERT_THAT(index.size(), Eq(56));      
+   //ASSERT_THAT(index.size(), Eq(56));      
+   ASSERT_THAT(index.size(), ElementsAre(56,0,0));      
+
 }
 
 TEST_F(PrimaryTreeIndexTestWithRowId,ExactMatchWhenExactMatchLookupIsCalled) {

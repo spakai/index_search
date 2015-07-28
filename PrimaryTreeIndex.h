@@ -51,13 +51,22 @@ class PrimaryTreeIndexBase: public Index {
 
             throw IndexSearchException("No match found");
         }
-        int size() const {
-            auto index = indexes.at(0);
-            return index->size();
+
+        std::vector<int> size() const {
+            std::vector<int> sizes;
+            for(unsigned int i=0; i<indexes.size(); i++) {
+                if(indexes.at(i) !=nullptr) {
+                    auto index = indexes.at(i);
+                    sizes.push_back(index->size()); 
+                } else {
+                   sizes.push_back(0); 
+                }
+            }
+            return sizes;
         }
 
         std::function<int(const std::string & key)> hash;
-        std::vector<std::shared_ptr<std::map<std::string,T>>> indexes = {nullptr};
+        std::vector<std::shared_ptr<std::map<std::string,T>>> indexes = {nullptr,nullptr,nullptr};
 };
 
 template<typename T>
