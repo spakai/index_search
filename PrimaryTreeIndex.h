@@ -11,14 +11,19 @@ template <typename T>
 class PrimaryTreeIndexBase: public Index {
 	public:
         PrimaryTreeIndexBase()
-            : hash([] (const std::string & key){return 0;}) {
+            : hash([] (const std::string & key){return 0;}) 
+        {
+            indexes.push_back(std::make_shared<std::map<std::string,T>>());     
         }
 
-        PrimaryTreeIndexBase(std::function<int(const std::string & key)> hash)
-            :hash(hash) {
+        PrimaryTreeIndexBase(std::function<int(const std::string & key)> hash, unsigned int mapSize)
+            :hash(hash)
+        {
+            for(unsigned int i=0; i < mapSize ; i++) {
+                 indexes.push_back(std::make_shared<std::map<std::string,T>>());     
+            }
         } 
         void buildIndex(Table & table, int index_column) {}
-        
  
         void buildIndex(Table & table, int index_column, int value_column) {}
 
@@ -64,8 +69,8 @@ class PrimaryTreeIndexBase: public Index {
             return sizes;
         }
 
+        std::vector<std::shared_ptr<std::map<std::string,T>>> indexes;
         std::function<int(const std::string & key)> hash;
-        std::vector<std::shared_ptr<std::map<std::string,T>>> indexes = {nullptr,nullptr,nullptr};
 };
 
 template<typename T>
@@ -85,20 +90,14 @@ class PrimaryTreeIndex<int>: public PrimaryTreeIndexBase<int> {
     PrimaryTreeIndex()
             :PrimaryTreeIndexBase<int>() {}
 
-    PrimaryTreeIndex(std::function<int(const std::string & key)> hash)
-        :PrimaryTreeIndexBase<int>(hash) {}
+    PrimaryTreeIndex(std::function<int(const std::string & key)> hash, unsigned int mapSize)
+        :PrimaryTreeIndexBase<int>(hash, mapSize) {}
 
     void buildIndex(Table & table, int index_column) {
         int rowno = 0;
         for(auto currentRow : table) {
             std::string key = currentRow[index_column];
-            int hashed_index = hash(key);
-
-            if(indexes.at(hashed_index) == nullptr) { 
-                indexes[hashed_index] = std::make_shared<std::map<std::string,int>>();     
-            }
-
-            auto index = indexes.at(hashed_index);
+            auto index = indexes.at(hash(key));
             index->emplace(currentRow[index_column], rowno++);
         }
     }
@@ -110,20 +109,13 @@ class PrimaryTreeIndex<std::string>: public PrimaryTreeIndexBase<std::string> {
     PrimaryTreeIndex()
             :PrimaryTreeIndexBase<std::string>() {}
 
-    PrimaryTreeIndex(std::function<int(const std::string & key)> hash)
-        :PrimaryTreeIndexBase<std::string>(hash) {}
-
+    PrimaryTreeIndex(std::function<int(const std::string & key)> hash, unsigned int mapSize)
+        :PrimaryTreeIndexBase<std::string>(hash, mapSize) {}
 
     void buildIndex(Table & table, int index_column, int value_column) {
             for(auto currentRow : table) {
                 std::string key = currentRow[index_column];
-                int hashed_index = hash(key);
-
-                if(indexes.at(hashed_index) == nullptr) { 
-                    indexes[hashed_index] = std::make_shared<std::map<std::string,std::string>>();     
-                }
-
-                auto index = indexes.at(hashed_index);
+                auto index = indexes.at(hash(key));
                 index->emplace(currentRow[index_column], currentRow[value_column]);
             }
         }
