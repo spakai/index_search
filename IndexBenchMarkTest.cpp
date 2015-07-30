@@ -40,6 +40,27 @@ TEST_F(IndexBenchMarkTest,PrimaryTreeIndexExactMatch) {
     }
 }
 
+TEST(IndexBenchMarkTestForMultiMaps,PrimaryTreeMultiMapIndexExactMatch) {
+    std::function<int(const std::string & key)> hash = [] (const std::string & key){return std::stoi(key.substr(0,4));};        
+    PrimaryTreeIndex<int> treeMultiIndex(hash,10000);
+    FileTable ft;
+    std::vector<std::string> ExactKeysToSearch;
+    ft.init("../csv/large_data.csv");
+    treeMultiIndex.buildIndex(ft, 0);
+    int rows = ft.getNumberOfRows();
+    std::default_random_engine dre;
+    std::uniform_int_distribution<int> di(0,rows-1);
+    for (int i=0; i<50000; ++i) {
+        auto tokens = ft.getRow(di(dre));
+        ExactKeysToSearch.push_back(tokens[0]);
+    }
+     
+    TestTimer timer("Primary Tree MultiIndex Exact Match", ExactKeysToSearch.size());
+    for(auto it=ExactKeysToSearch.begin(); it!= ExactKeysToSearch.end(); ++it) {
+        treeMultiIndex.exactMatch(*it);
+    }
+}
+
 TEST_F(IndexBenchMarkTest,PrimaryHashIndexExactMatch) {
     TestTimer timer("Primary Hash Index Exact Match", ExactKeysToSearch.size());
     for(auto it=ExactKeysToSearch.begin(); it!= ExactKeysToSearch.end(); ++it) {

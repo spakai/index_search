@@ -31,10 +31,10 @@ TEST(PrimaryTreeIndexTestWithMultiMaps,GetSizeofIndex) {
    ft.init("../csv/bnumber2.csv");
    std::function<int(const std::string & key)> hash = [] (const std::string & key){return std::stoi(key.substr(0,2));};        
  
-   PrimaryTreeIndex<int> index(hash,3);
+   PrimaryTreeIndex<int> index(hash,10);
    index.buildIndex(ft, 0);
 
-   ASSERT_THAT(index.size(), ElementsAre(0,56,0));      
+   ASSERT_THAT(index.size(), ElementsAre(0, 56, 0, 0, 0, 0, 0, 0, 0, 0));      
 }
 
 TEST_F(PrimaryTreeIndexTestWithRowId,GetSizeofIndex) {

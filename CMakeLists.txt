@@ -6,15 +6,20 @@ link_directories($ENV{GMOCK_HOME}/mybuild $ENV{GMOCK_HOME}/gtest/mybuild)
 
 add_definitions(-std=c++0x)
 set(CMAKE_CXX_FLAGS "${CMAXE_CXX_FLAGS} -Wall -g -O0 --coverage")
-
 set(sources 
    main.cpp
    FileTable.cpp
-   PrimaryTreeIndex.h)
-
-set(test_sources
-   PrimaryTreeIndexTest.cpp)
-
+   PrimaryTreeIndex.h
+   SecondaryTreeIndex.cpp
+   PrimaryHashIndex.cpp
+   TestTimer.cpp)
+ 
+ set(test_sources
+   FileTableTest.cpp
+   PrimaryTreeIndexTest.cpp
+   SecondaryTreeIndexTest.cpp
+   PrimaryHashIndexTest.cpp
+   IndexBenchMarkTest)
 
 add_executable(test ${test_sources} ${sources})
 
