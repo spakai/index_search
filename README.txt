@@ -1,7 +1,7 @@
 uname -a
 Linux prakash-ThinkPad-SL410 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:13:00 UTC 2015 i686 i686 i686 GNU/Linux
 
-1 million records in Index
+1 million records in Index with single thread search
 
 Primary Tree Index Exact Match Time taken = 177.93ms for 50000 transactions
 
