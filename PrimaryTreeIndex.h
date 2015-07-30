@@ -33,7 +33,6 @@ class PrimaryTreeIndexBase: public Index {
         } 
 
         const T& bestMatch(const std::string& key) const {
-
             auto index = indexes.at(hash(key));
             auto lower_bound = index->lower_bound(key);
             if(lower_bound != index->end() && lower_bound->first == key) {
@@ -54,14 +53,14 @@ class PrimaryTreeIndexBase: public Index {
 
         std::vector<int> size() const {
             std::vector<int> sizes;
-            for(unsigned int i=0; i<indexes.size(); i++) {
-                if(indexes.at(i) !=nullptr) {
-                    auto index = indexes.at(i);
+            for(auto index : indexes) {
+                if(index == nullptr) { 
+                    sizes.push_back(0);
+                } else { 
                     sizes.push_back(index->size()); 
-                } else {
-                   sizes.push_back(0); 
                 }
             }
+
             return sizes;
         }
 
