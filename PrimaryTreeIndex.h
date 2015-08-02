@@ -58,7 +58,7 @@ class PrimaryTreeIndexBase: public Index {
 
         std::vector<int> size() const {
             std::vector<int> sizes;
-            for(auto index : indexes) {
+            for(auto & index : indexes) {
                 if(index == nullptr) { 
                     sizes.push_back(0);
                 } else { 
@@ -96,8 +96,7 @@ class PrimaryTreeIndex<int>: public PrimaryTreeIndexBase<int> {
     void buildIndex(Table & table, int index_column) {
         int rowno = 0;
         for(auto currentRow : table) {
-            std::string key = currentRow[index_column];
-            auto index = indexes.at(hash(key));
+            auto index = indexes.at(hash(currentRow[index_column]));
             index->emplace(currentRow[index_column], rowno++);
         }
     }
@@ -114,8 +113,7 @@ class PrimaryTreeIndex<std::string>: public PrimaryTreeIndexBase<std::string> {
 
     void buildIndex(Table & table, int index_column, int value_column) {
             for(auto currentRow : table) {
-                std::string key = currentRow[index_column];
-                auto index = indexes.at(hash(key));
+                auto index = indexes.at(hash(currentRow[index_column]));
                 index->emplace(currentRow[index_column], currentRow[value_column]);
             }
         }
