@@ -1,6 +1,10 @@
-uname -a
-Linux prakash-ThinkPad-SL410 3.19.0-16-generic #16-Ubuntu SMP Thu Apr 30 16:13:00 UTC 2015 i686 i686 i686 GNU/Linux
 
+**Motivation
+I've always wanted to understand how basic indexing work in Oracle - there are two main indexes BTree and Hash. BTree allows us to to search for substring of the key while Hash only allows us to search for an exact match.
+
+
+
+**Performance Test
 1 million records in Index with single thread search
 
 Primary Tree Index Exact Match Time taken = 177.93ms for 50000 transactions
