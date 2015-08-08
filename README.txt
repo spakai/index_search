@@ -1,6 +1,16 @@
 
-**Motivation
-I've always wanted to understand how basic indexing work in Oracle - there are two main indexes BTree and Hash. BTree allows us to to search for substring of the key while Hash only allows us to search for an exact match.
+##Motivation
+I've always wanted to understand how basic indexing work in Oracle 
+There are two main indexes BTree and Hash. 
+BTree allows us to to search for substring of the key 
+  select * from test where name like ="A%";
+
+while Hash only allows us to search for an exact match.
+  select * from test where name = "ABC";
+
+
+##Code design
+
 
 
 
