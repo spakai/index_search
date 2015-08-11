@@ -24,9 +24,9 @@ Theory is from the book File Structures Using C++ by Venugopal, K.R.
 
 | Index Type        | STL                   | Remarks            |
 | ---------------- |:----------------------:| ------------------:|
-|PrimaryTreeIndex  | std::map               |                    |
+|PrimaryTreeIndex  | std::map               |Key must be unique  |
 |SecondaryTreeIndex| std::multimap          |Allows duplicate key|
-|PrimaryHashIndex  | std::unordered_map     |                    |
+|PrimaryHashIndex  | std::unordered_map     |Key must be unique  |                    |
 |SecondaryHashIndex| std::unordered_multimap|Allows duplicate key|
 
 
@@ -45,7 +45,7 @@ Primary Tree Index Best Match Time taken = 191.299ms for 50000 transactions
 
 Primary Tree Index Best Match TPS = 261370
 
-Primary Tree MultiIndex Exact Match Time taken = 108.672ms for 50000 transactions
+Primary Tree MultiIndex(10000 maps)  Exact Match Time taken = 108.672ms for 50000 transactions
 
 Primary Tree MultiIndex Exact Match TPS = 460100
 
