@@ -5,15 +5,16 @@ I've always wanted to understand how basic indexing work in Oracle.
 There are two main indexes BTree and Hash. 
 
 BTree allows us to to search for substring of the key 
-  select * from test where name like ="A%";
+  `select * from test where name like ="A%";`
 
 while Hash only allows us to search for an exact match.
-  select * from test where name = "ABC";
+  `select * from test where name = "ABC";`
 
 
 ##Code design
-Design was influenced by www.fuzzy.cz/en/articles/common-problems-with-sql-indexes/
+Design was influenced by www.fuzzy.cz/en/tags/indexes/
 
+Theory is from the book File Structures Using C++ by Venugopal, K.R.
 
 
 
