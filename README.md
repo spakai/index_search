@@ -2,9 +2,9 @@
 ##Motivation
 I've always wanted to understand how basic indexing work in Oracle.
 
-There are two main indexes BTree and Hash. 
+There are two main indexes B-Tree and Hash. 
 
-BTree allows us to to search for substring of the key
+B-Tree allows us to to search for substring of the key. 
 
   `select * from test where name like ="A%";`
 
@@ -13,11 +13,21 @@ while Hash only allows us to search for an exact match.
   `select * from test where name = "ABC";`
 
 
+In this code, I have two requirements , search for an exact match and best match. Exact match is fastest when an hashmap is used while a best match requires a sorted data structure.
+
+
+
 ##Code design
 Design was influenced by www.fuzzy.cz/en/tags/indexes/
 
 Theory is from the book File Structures Using C++ by Venugopal, K.R.
 
+| Index Type        | STL                   | Remarks            |
+| ---------------- |:----------------------:| ------------------:|
+|PrimaryTreeIndex  | std::map               |                    |
+|SecondaryTreeIndex| std::multimap          |Allows duplicate key|
+|PrimaryHashIndex  | std::unordered_map     |                    |
+|SecondaryHashIndex| std::unordered_multimap|Allows duplicate key|
 
 
 ##Performance Test
